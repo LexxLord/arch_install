@@ -1,8 +1,13 @@
 # Line-by-line script execution
 
+Dependencies:
+- fzf
+
+***
+
 ## For zsh
 
-```
+```shell
 print -z $(cat arch_install.sh | fzf)
 ```
 
@@ -10,7 +15,7 @@ print -z $(cat arch_install.sh | fzf)
 
 `script_prompt_write.sh`
 
-```
+```shell
 prompt_write() {
 	[[ -t 0 ]] || return 1
 	local str=$1
@@ -24,7 +29,7 @@ prompt_write() {
 
 ### Example of use:
 
-```
+```shell
 source ./script_prompt_write.sh
 
 prompt_write "$(cat ./script_prompt_write.sh | fzf )"
