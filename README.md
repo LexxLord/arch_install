@@ -32,5 +32,5 @@ prompt_write() {
 ```shell
 source ./script_prompt_write.sh
 
-prompt_write "$(cat ./script_prompt_write.sh | fzf )"
+prompt_write "$(cat ./arch_install.sh | fzf )"
 ```
