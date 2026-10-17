@@ -2,17 +2,21 @@
 
 pacman -Sy --noconfirm
 
-lsblk -f
+# lsblk -f
+lsblk
 
-cfdisk -z /dev/nvme0n1
+# cfdisk -z /dev/nvme0n1
+cfdisk /dev/nvme0n1
 
-mkfs -t vfat -F 32 -n "BOOT" -m 1 /dev/nvme0n1p1
+# mkfs -t vfat -F 32 -n "BOOT" -m 1 /dev/nvme0n1p1
+mkfs.vfat -F 32 -n "BOOT" -m 1 /dev/nvme0n1p1
 
 mkswap -L "SWAP" /dev/nvme0n1p2
 swapon /dev/nvme0n1p2
 # free -h
 
-mkfs -t ext4 -L "ROOT" -m 1 /dev/nvme0n1p3
+# mkfs -t ext4 -L "ROOT" -m 1 /dev/nvme0n1p3
+mkfs.ext4 -L "ROOT" -m 1 /dev/nvme0n1p3
 
 mount /dev/nvme0n1p3 /mnt
 
