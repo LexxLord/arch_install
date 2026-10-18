@@ -97,6 +97,42 @@ hwclock --show
 
 
 
+# pacman -S plymouth
+
+# /etc/mkinitcpio.conf
+# {
+#     MODULES=(... plymouth ...)
+# }
+
+# mkinitcpio -P
+
+# /etc/plymouth/plymouthd.conf
+# {
+#     [Daemon]
+#     Theme=sentinels
+# }
+
+
+
+# pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+# systemctl enable lightdm
+
+
+
+# pacman -S xfce4 xfce4-goodies xfce4-dev-tools xfce4-docklike-plugin xfce4-panel-profiles network-manager-applet
+
+
+
+# AUR
+# pacman -S xfce4-datetime-plugin xfce4-sensors-plugin-nvidia xfce4-dockbarx-plugin xfce4-dxreminders-plugin
+
+# pacman -S zentile menulibre dockbarx dxreminders mkinitcpio-firmware
+
+
+
+
+
+
 ###############################################################################
 # Установка Arch Linux с KDE Plasma
 # Настройка разделов:
