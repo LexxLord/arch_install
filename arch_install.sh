@@ -106,12 +106,6 @@ hwclock --show
 
 # mkinitcpio -P
 
-# /etc/plymouth/plymouthd.conf
-# {
-#     [Daemon]
-#     Theme=sentinels
-# }
-
 
 
 # pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
