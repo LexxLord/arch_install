@@ -71,9 +71,12 @@ setfont cyr-sun16
 
 export LANG=ru_RU.UTF-8
 
-ln -sf /usr/share/zoneinfo/"$(tzselect)" /etc/localtime
-hwclock --systohc
-hwclock --show
+# ln -sf /usr/share/zoneinfo/"$(tzselect)" /etc/localtime
+timedatectl set-timezone "$(tzselect)"
+# hwclock --systohc
+timedatectl set-ntp true
+# hwclock --show
+timedatectl
 
 
 
