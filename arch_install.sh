@@ -120,6 +120,12 @@ timedatectl
 
 
 
+# GitHub ( https://tui.tools )
+# curl -fsSL https://pkgs.tui.tools/install.sh | sh
+# pacman -S tui-tools-all
+
+
+
 # AUR
 # pacman -S xfce4-datetime-plugin xfce4-sensors-plugin-nvidia xfce4-dockbarx-plugin xfce4-dxreminders-plugin
 
