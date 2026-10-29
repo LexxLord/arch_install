@@ -1,7 +1,9 @@
 # Line-by-line script execution
 
 ## Requirements
+
 Dependencies:
+
 - fzf
 
 ***
