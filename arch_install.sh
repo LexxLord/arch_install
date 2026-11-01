@@ -42,7 +42,9 @@ pacman -Syu git wget samba avahi smbnetfs openssh sshs ntp btop fzf bat nano mse
 
 systemctl enable NetworkManager sshd
 
-msedit /etc/sudoers       # раскомментировать %wheel ALL=(ALL:ALL) ALL
+# раскомментировать %wheel ALL=(ALL:ALL) ALL
+# msedit /etc/sudoers
+sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
 passwd
 
@@ -50,18 +52,22 @@ passwd
 useradd -m -G wheel -s /bin/bash lexx
 passwd lexx
 
-msedit /etc/locale.gen
+# msedit /etc/locale.gen
+sed -i 's/#ru_RU.UTF-8 UTF-8/ru_RU.UTF-8 UTF-8/' /etc/locale.gen
+sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 
-msedit /etc/locale.conf
+# msedit /etc/locale.conf
 # {
 #     LANG=ru_RU.UTF-8
 # }
+echo -e "#LANG=en_US.UTF-8\nLANG=ru_RU.UTF-8" > /etc/locale.conf
 
-msedit /etc/vconsole.conf
+# msedit /etc/vconsole.conf
 # {
 #     KEYMAP=ru
 #     FONT=cyr-sun16
 # }
+echo -e "KEYMAP=ru\nFONT=cyr-sun16" > /etc/vconsole.conf
 
 locale-gen
 
@@ -79,6 +85,8 @@ timedatectl set-ntp true
 timedatectl
 
 
+
+# pacman -S go npm cargo python cmake clang
 
 # pacman -S ttf-liberation ttf-dejavu ttf-roboto terminus-font ttf-jetbrains-mono ttf-fira-code ttf-hack adobe-source-code-pro-fonts
 # pacman -S p7zip ouch xplr eza yazi broot ncdu gdu diskus duf caligula tailspin nvme-cli s-tui dua-cli lnav gpart dysk yq jq
