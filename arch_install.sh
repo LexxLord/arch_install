@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pacman -Sy --noconfirm
+pacman -Sy
 
 # lsblk -f
 lsblk
@@ -38,12 +38,13 @@ hostnamectl set-hostname SENTINEL
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
-pacman -Syu git wget samba avahi smbnetfs openssh sshs ntp btop fzf bat nano msedit mc os-prober superfile networkmanager --noconfirm
+pacman -Syu git wget samba avahi smbnetfs openssh sshs ntp btop fzf bat nano msedit mc os-prober superfile networkmanager
 
 systemctl enable NetworkManager sshd
 
 # раскомментировать %wheel ALL=(ALL:ALL) ALL
 # msedit /etc/sudoers
+# EDITOR=msedit visudo
 sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
 passwd
