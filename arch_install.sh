@@ -35,7 +35,7 @@ arch-chroot /mnt
 echo "SENTINEL" > /etc/hostname
 hostnamectl set-hostname SENTINEL
 
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --removable
 grub-mkconfig -o /boot/grub/grub.cfg
 
 pacman -Syu git wget samba avahi smbnetfs openssh sshs ntp btop fzf bat nano msedit mc os-prober superfile networkmanager
