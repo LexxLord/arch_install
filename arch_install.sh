@@ -49,7 +49,7 @@ sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 passwd
 
 # useradd -m -g users -G wheel -s /bin/bash lexx
-useradd -m -G wheel -s /bin/bash lexx
+useradd -m -g users -G wheel -s /bin/bash lexx
 passwd lexx
 
 # msedit /etc/locale.gen
