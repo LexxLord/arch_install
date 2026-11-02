@@ -22,8 +22,8 @@ mount /dev/nvme0n1p3 /mnt
 
 # mkdir /mnt/boot
 # mount /dev/nvme0n1p1 /mnt/boot
-# mount --mkdir /dev/nvme0n1p1 /mnt/boot
-mount -m /dev/nvme0n1p1 /mnt/boot
+# mount -m /dev/nvme0n1p1 /mnt/boot
+mount --mkdir /dev/nvme0n1p1 /mnt/boot
 
 # pacstrap -K Создает чистый ключ: генерирует свежую и независимую базу доверенных PGP-ключей для устанавливаемой системы.
 pacstrap -K /mnt base base-devel linux-firmware linux-zen linux-zen-headers intel-ucode iucode-tool sudo grub efibootmgr bash-completion sof-firmware
@@ -140,6 +140,13 @@ timedatectl
 
 # pacman -S zentile menulibre dockbarx dxreminders mkinitcpio-firmware
 
+
+
+
+
+# exit
+# umount -R /mnt
+# reboot
 
 
 
