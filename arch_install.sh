@@ -32,8 +32,10 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 arch-chroot /mnt
 
-echo "SENTINEL" > /etc/hostname
-hostnamectl set-hostname SENTINEL
+# echo "SENTINEL" > /etc/hostname
+# hostnamectl set-hostname "SENTINEL OF LEXX" --pretty
+# hostnamectl set-hostname "sentinel" --transient
+hostnamectl set-hostname "SENTINEL"
 
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --removable
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -44,8 +46,8 @@ systemctl enable NetworkManager sshd
 
 # раскомментировать %wheel ALL=(ALL:ALL) ALL
 # msedit /etc/sudoers
-# EDITOR=msedit visudo
-sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
+# sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
+EDITOR=msedit visudo
 
 passwd
 
