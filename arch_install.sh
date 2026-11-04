@@ -1,4 +1,6 @@
 #!/bin/bash
+# -*- coding: utf-8 -*-
+# cSpell:disable
 
 pacman -Sy
 
@@ -9,7 +11,7 @@ lsblk
 cfdisk /dev/nvme0n1
 
 # mkfs -t vfat -F 32 -n "BOOT" -m 1 /dev/nvme0n1p1
-mkfs.vfat -F 32 -n "BOOT" -m 1 /dev/nvme0n1p1
+mkfs.vfat -F 32 -n "BOOT" /dev/nvme0n1p1
 
 mkswap -L "SWAP" /dev/nvme0n1p2
 swapon /dev/nvme0n1p2
@@ -29,7 +31,7 @@ pacman -Sy reflector
 reflector --verbose --latest 5 --age 6 --number 10 --sort rate --save /etc/pacman.d/mirrorlist
 
 # pacstrap -K Создает чистый ключ: генерирует свежую и независимую базу доверенных PGP-ключей для устанавливаемой системы.
-pacstrap -K /mnt base base-devel linux-firmware linux-zen linux-zen-headers intel-ucode iucode-tool sudo grub efibootmgr bash-completion sof-firmware
+pacstrap -K /mnt base base-devel linux-firmware linux-zen linux-zen-headers intel-ucode iucode-tool sudo grub efibootmgr bash-completion sof-firmware msedit fzf bat
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
@@ -43,7 +45,7 @@ hostnamectl set-hostname "SENTINEL"
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --removable
 grub-mkconfig -o /boot/grub/grub.cfg
 
-pacman -Syu git wget samba avahi smbnetfs openssh sshs ntp btop fzf bat nano msedit mc os-prober superfile networkmanager
+pacman -Syu git wget samba avahi smbnetfs openssh sshs ntp btop nano mc os-prober superfile networkmanager
 
 systemctl enable NetworkManager sshd
 
@@ -92,45 +94,51 @@ timedatectl
 
 
 
-# pacman -S go npm cargo python cmake clang
-
-# pacman -S ttf-liberation ttf-dejavu ttf-roboto terminus-font ttf-jetbrains-mono ttf-fira-code ttf-hack adobe-source-code-pro-fonts
-# pacman -S p7zip ouch xplr eza yazi broot ncdu gdu diskus duf caligula tailspin nvme-cli s-tui dua-cli lnav gpart dysk yq jq
-
-# pacman -S cifs-utils nilfs-utils ntfs-3g btrfs-progs f2fs-tools sshfs dosfstools jfsutils exfatprogs xfsdump xfsprogs mtools
-# pacman -S gvfs-smb gvfs-nfs gvfs-afc gvfs-goa gvfs-gphoto2 gvfs-mtp gvfs-dnssd gvfs-onedrive gvfs-wsdd gvfs
-
-# pacman -S neovim glow orbiton chafa viu mpv yt-dlp ffmpeg sox fbida wiremix imagemagick kew espeak-ng rhvoice fastfetch countryfetch onefetch cpufetch
-
-# pacman -S hexyl hex hexedit hexer hexpatch binsider heh
-
-# pacman -S git-delta lazygit net-tools iwd nload aria2 git-lfs github-cli transmission-cli impala bluetui openbsd-netcat
-# pacman -S bmon chawan cloudflare-speed-cli speedtest-cli croc himalaya monolith netscanner termshark termscp trippy netwatch mailutils axel
-
-# pacman -S sqlite visidata television nvtop atop iftop wavemon pv tmux zellij ripgrep ripgrep-all repgrep zoxide trash-cli navi
-# pacman -S pastel yank gpg-tui asciinema serpl intel-ucode iucode-tool dialog ccache sccache numlockx procs hyperfine at
-# pacman -S pwgen age gdb cgdb cotp ctop hazelnut kmon systemctl-tui systeroid lazydocker rsync pacman-contrib
-# pacman -S pandoc-cli translate-shell aspell cloc difftastic diff-pdf shellcheck csvlens doxx pdfgrep tabiew treemd xan
+exit
+# umount -R /mnt
+# reboot
 
 
 
-# pacman -S plymouth
+# sudo pacman -S go npm cargo python cmake clang
+
+# sudo pacman -S ttf-liberation ttf-dejavu ttf-roboto terminus-font ttf-jetbrains-mono ttf-fira-code ttf-hack adobe-source-code-pro-fonts
+# sudo pacman -S p7zip ouch xplr eza yazi broot ncdu gdu diskus duf caligula tailspin nvme-cli s-tui dua-cli lnav gpart dysk yq jq
+
+# sudo pacman -S cifs-utils nilfs-utils ntfs-3g btrfs-progs f2fs-tools sshfs dosfstools jfsutils exfatprogs xfsdump xfsprogs mtools
+# sudo pacman -S gvfs-smb gvfs-nfs gvfs-afc gvfs-goa gvfs-gphoto2 gvfs-mtp gvfs-dnssd gvfs-onedrive gvfs-wsdd gvfs
+
+# sudo pacman -S neovim glow orbiton chafa viu mpv yt-dlp ffmpeg sox fbida wiremix imagemagick kew espeak-ng rhvoice fastfetch countryfetch onefetch cpufetch
+
+# sudo pacman -S hexyl hex hexedit hexer hexpatch binsider heh
+
+# sudo pacman -S git-delta lazygit net-tools iwd nload aria2 git-lfs github-cli transmission-cli impala bluetui openbsd-netcat
+# sudo pacman -S bmon chawan cloudflare-speed-cli speedtest-cli croc himalaya monolith netscanner termshark termscp trippy netwatch mailutils axel
+
+# sudo pacman -S sqlite visidata television nvtop atop iftop wavemon pv tmux zellij ripgrep ripgrep-all repgrep zoxide trash-cli navi
+# sudo pacman -S pastel yank gpg-tui asciinema serpl intel-ucode iucode-tool dialog ccache sccache numlockx procs hyperfine at
+# sudo pacman -S pwgen age gdb cgdb cotp ctop hazelnut kmon systemctl-tui systeroid lazydocker rsync pacman-contrib
+# sudo pacman -S pandoc-cli translate-shell aspell cloc difftastic diff-pdf shellcheck csvlens doxx pdfgrep tabiew treemd xan
+
+
+
+# sudo pacman -S plymouth
 
 # /etc/mkinitcpio.conf
 # {
-#     MODULES=(... plymouth ...)
+#     HOOKS=(... plymouth)
 # }
 
-# mkinitcpio -P
+# sudo mkinitcpio -P
 
 
 
-# pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+# sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
 # systemctl enable lightdm
 
 
 
-# pacman -S xfce4 xfce4-goodies xfce4-dev-tools xfce4-docklike-plugin xfce4-panel-profiles network-manager-applet
+# sudo pacman -S xfce4 xfce4-goodies xfce4-dev-tools xfce4-docklike-plugin xfce4-panel-profiles network-manager-applet
 
 
 
@@ -149,9 +157,7 @@ timedatectl
 
 
 
-# exit
-# umount -R /mnt
-# reboot
+
 
 
 
