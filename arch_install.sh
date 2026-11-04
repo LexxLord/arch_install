@@ -25,6 +25,9 @@ mount /dev/nvme0n1p3 /mnt
 # mount -m /dev/nvme0n1p1 /mnt/boot
 mount --mkdir /dev/nvme0n1p1 /mnt/boot
 
+pacman -Sy reflector
+reflector --verbose --latest 5 --age 6 --number 10 --sort rate --save /etc/pacman.d/mirrorlist
+
 # pacstrap -K Создает чистый ключ: генерирует свежую и независимую базу доверенных PGP-ключей для устанавливаемой системы.
 pacstrap -K /mnt base base-devel linux-firmware linux-zen linux-zen-headers intel-ucode iucode-tool sudo grub efibootmgr bash-completion sof-firmware
 
