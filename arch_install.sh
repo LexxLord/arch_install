@@ -2,44 +2,32 @@
 # -*- coding: utf-8 -*-
 # cSpell:disable
 
-pacman -Sy
+pacman -Sy msedit fzf bat
 
-# lsblk -f
 lsblk
 
-# cfdisk -z /dev/nvme0n1
 cfdisk /dev/nvme0n1
 
-# mkfs -t vfat -F 32 -n "BOOT" -m 1 /dev/nvme0n1p1
 mkfs.vfat -F 32 -n "BOOT" /dev/nvme0n1p1
 
 mkswap -L "SWAP" /dev/nvme0n1p2
 swapon /dev/nvme0n1p2
-# free -h
 
-# mkfs -t ext4 -L "ROOT" -m 1 /dev/nvme0n1p3
 mkfs.ext4 -L "ROOT" -m 1 /dev/nvme0n1p3
 
 mount /dev/nvme0n1p3 /mnt
 
-# mkdir /mnt/boot
-# mount /dev/nvme0n1p1 /mnt/boot
-# mount -m /dev/nvme0n1p1 /mnt/boot
 mount --mkdir /dev/nvme0n1p1 /mnt/boot
 
 pacman -Sy reflector
 reflector --verbose --latest 5 --age 6 --number 10 --sort rate --save /etc/pacman.d/mirrorlist
 
-# pacstrap -K Создает чистый ключ: генерирует свежую и независимую базу доверенных PGP-ключей для устанавливаемой системы.
 pacstrap -K /mnt base base-devel linux-firmware linux-zen linux-zen-headers intel-ucode iucode-tool sudo grub efibootmgr bash-completion sof-firmware msedit fzf bat
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
 arch-chroot /mnt
 
-# echo "SENTINEL" > /etc/hostname
-# hostnamectl set-hostname "SENTINEL OF LEXX" --pretty
-# hostnamectl set-hostname "sentinel" --transient
 hostnamectl set-hostname "SENTINEL"
 
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --removable
@@ -50,31 +38,18 @@ pacman -Syu git wget samba avahi smbnetfs openssh sshs ntp btop nano mc os-probe
 systemctl enable NetworkManager sshd
 
 # раскомментировать %wheel ALL=(ALL:ALL) ALL
-# msedit /etc/sudoers
-# sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 EDITOR=msedit visudo
 
 passwd
 
-# useradd -m -g users -G wheel -s /bin/bash lexx
 useradd -m -g users -G wheel -s /bin/bash lexx
 passwd lexx
 
-# msedit /etc/locale.gen
 sed -i 's/#ru_RU.UTF-8 UTF-8/ru_RU.UTF-8 UTF-8/' /etc/locale.gen
 sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 
-# msedit /etc/locale.conf
-# {
-#     LANG=ru_RU.UTF-8
-# }
 echo -e "#LANG=en_US.UTF-8\nLANG=ru_RU.UTF-8" > /etc/locale.conf
 
-# msedit /etc/vconsole.conf
-# {
-#     KEYMAP=ru
-#     FONT=cyr-sun16
-# }
 echo -e "KEYMAP=ru\nFONT=cyr-sun16" > /etc/vconsole.conf
 
 locale-gen
@@ -85,11 +60,10 @@ setfont cyr-sun16
 
 export LANG=ru_RU.UTF-8
 
-# ln -sf /usr/share/zoneinfo/"$(tzselect)" /etc/localtime
 timedatectl set-timezone "$(tzselect)"
-# hwclock --systohc
+
 timedatectl set-ntp true
-# hwclock --show
+
 timedatectl
 
 
