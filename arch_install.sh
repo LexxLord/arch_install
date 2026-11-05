@@ -125,6 +125,16 @@ exit
 
 
 # AUR
-# pacman -S xfce4-datetime-plugin xfce4-sensors-plugin-nvidia xfce4-dockbarx-plugin xfce4-dxreminders-plugin
+# xfce4-datetime-plugin zentile
 
-# pacman -S zentile menulibre dockbarx dxreminders mkinitcpio-firmware
+# pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+# pacman-key --lsign-key 3056513887B78AEB
+# pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-'{keyring,mirrorlist}'.pkg.tar.zst' --noconfirm
+
+# echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" >> /etc/pacman.conf
+
+# pacman -S yay
+
+# yay -S xfce4-sensors-plugin-nvidia xfce4-dockbarx-plugin xfce4-dxreminders-plugin
+
+# yay -S menulibre dockbarx dxreminders mkinitcpio-firmware
