@@ -21,7 +21,7 @@ mount --mkdir /dev/nvme0n1p1 /mnt/boot
 
 ###############################################################################
 # pacman -Sy reflector
-# reflector --verbose --latest 5 --age 6 --number 10 --sort rate --save /etc/pacman.d/mirrorlist
+# reflector --verbose --latest 50 --age 6 --number 15 --sort rate --save /etc/pacman.d/mirrorlist
 ###############################################################################
 
 pacstrap -K /mnt base base-devel linux-firmware linux-zen linux-zen-headers intel-ucode iucode-tool sudo grub efibootmgr bash-completion sof-firmware msedit fzf bat
