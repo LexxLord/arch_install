@@ -30,6 +30,8 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 arch-chroot /mnt
 
+mkdir -p -m777 /GIT /DIST_NET /DISK_MNT/{A..Z}
+
 hostnamectl set-hostname "SENTINEL"
 
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --removable
