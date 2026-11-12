@@ -30,7 +30,8 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 arch-chroot /mnt
 
-mkdir -p -m777 /GIT /DIST_NET /DISK_MNT/{A..Z}
+# mkdir -p -m777 /GIT /DIST_NET /DISK_MNT/{A..Z}
+install -d -m777 /GIT /DIST_NET /DISK_MNT/{A..Z}
 
 hostnamectl set-hostname "SENTINEL"
 
