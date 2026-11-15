@@ -79,6 +79,17 @@ exit
 
 
 
+
+# Bluetooth =================================================================================================
+# pacman -S bluez bluez-utils bluez-tools  bluez-deprecated-tools --noconfirm
+# systemctl enable bluetooth
+
+# WIFI =====================================================================================================
+# pacman -S iwd --noconfirm
+# systemctl enable iwd
+
+
+
 # sudo pacman -S go npm cargo python cmake clang
 
 # sudo pacman -S ttf-liberation ttf-dejavu ttf-roboto terminus-font ttf-jetbrains-mono ttf-fira-code ttf-hack adobe-source-code-pro-fonts
