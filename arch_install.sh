@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # cSpell:disable
 
-pacman -Sy msedit fzf bat
+pacman -Sy msedit fzf bat git
 
 lsblk
 
@@ -24,21 +24,21 @@ mount --mkdir /dev/nvme0n1p1 /mnt/boot
 # reflector --verbose --latest 50 --age 6 --number 15 --sort rate --save /etc/pacman.d/mirrorlist
 ###############################################################################
 
-pacstrap -K /mnt base base-devel linux-firmware linux-zen linux-zen-headers intel-ucode iucode-tool sudo grub efibootmgr bash-completion sof-firmware msedit fzf bat
+pacstrap -K /mnt base base-devel linux-firmware linux-zen linux-zen-headers intel-ucode iucode-tool sudo grub efibootmgr sof-firmware msedit fzf bat git
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
 arch-chroot /mnt
 
-# mkdir -p -m777 /GIT /DIST_NET /DISK_MNT/{A..Z}
-install -dm 777 /GIT /DIST_NET /DISK_MNT/{A..Z}
+# mkdir -pm777 /GIT /DIST_NET /REPOS /DISK_MNT/{A..Z}
+install -dm777 /GIT /DIST_NET /REPOS /DISK_MNT/{A..Z}
 
 hostnamectl set-hostname "SENTINEL"
 
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --removable
 grub-mkconfig -o /boot/grub/grub.cfg
 
-pacman -Syu git wget samba avahi smbnetfs openssh sshs ntp btop nano mc os-prober superfile networkmanager fastfetch
+pacman -Syu wget samba avahi smbnetfs openssh sshs ntp btop nano mc os-prober superfile networkmanager fastfetch bash-completion
 
 systemctl enable NetworkManager sshd
 
