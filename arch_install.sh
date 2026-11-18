@@ -47,7 +47,9 @@ EDITOR=msedit visudo
 
 passwd
 
-useradd -m -g users -G wheel -s /bin/bash lexx
+# echo "autologin" | xargs -n 1 sudo groupadd -rf
+groupadd -rf autologin
+useradd -m -g wheel -aG systemd-journal,autologin,libvirt,kvm,http -s /bin/bash lexx
 passwd lexx
 
 sed -i 's/#ru_RU.UTF-8 UTF-8/ru_RU.UTF-8 UTF-8/' /etc/locale.gen
