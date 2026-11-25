@@ -47,9 +47,10 @@ EDITOR=msedit visudo
 
 passwd
 
-# echo "autologin" | xargs -n 1 sudo groupadd -rf
-groupadd -rf autologin
-useradd -m -g wheel -aG systemd-journal,autologin,libvirt,kvm,http -s /bin/bash lexx
+echo "autologin libvirt usershares" | xargs -n 1 sudo groupadd -rf
+# groupadd -rf autologin
+useradd -m -g wheel -aG wheel http libvirt autologin systemd-journal kvm usershares -s /bin/bash lexx
+
 passwd lexx
 
 sed -i 's/#ru_RU.UTF-8 UTF-8/ru_RU.UTF-8 UTF-8/' /etc/locale.gen
